@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="9" skipped="0" tests="44" time="0.176" timestamp="2025-04-16T23:54:18.056635+03:00" hostname="DESKTOP-QHCIC65"><testcase classname="tests.test_file_presence" name="test_file_open" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameter_count" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[ScanMemoryLimit-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[PackageType-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[ExecArgMax-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[AdditionalDNSLookup-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[CoreDumps-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[RevealSensitiveInfoInTraces-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[ExecEnvMax-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[MaxInotifyWatches-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[CoreDumpsPath-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[UseFanotify-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[KsvlaMode-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[MachineId-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[StartupTraces-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[MaxInotifyInstances-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[Locale-General-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[ConnectTimeout-Watchdog-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[MaxVirtualMemory-Watchdog-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[MaxMemory-Watchdog-True]" time="0.001" /><testcase classname="tests.test_parameter" name="test_parameters[PingInterval-Watchdog-True]" time="0.001" /><testcase classname="tests.test_section" name="test_sections_names" time="0.001" /><testcase classname="tests.test_section" name="test_sections_count[General-True]" time="0.001" /><testcase classname="tests.test_section" name="test_sections_count[Watchdog-True]" time="0.001" /><testcase classname="tests.test_section" name="test_section_duplicates" time="0.001" /><testcase classname="tests.test_value" name="test_values[ScanMemoryLimit-General-True]" time="0.001"><failure message="AssertionError: The parameter value ScanMemoryLimit is invalid&#10;assert (False)&#10; +  where False = is_convertable_to_int('8046.2')">sections = {'Duplicate': False, 'General': {'AdditionalDNSLookup': 'False', 'CoreDumps': 'no', 'CoreDumpsPath': '////var/opt/kasp...o', ...}, 'Watchdog': {'ConnectTimeout': '-20m', 'MaxMemory': '70', 'MaxVirtualMemory': '0', 'PingInterval': '3000,3'}}
+parameter_name = 'ScanMemoryLimit', section = 'General', expected = True
+
+    @pytest.mark.parametrize(
+        'parameter_name, section, expected',
+        [
+            ('ScanMemoryLimit', 'General', True),
+            ('PackageType', 'General', True),
+            ('ExecArgMax', 'General', True),
+            ('AdditionalDNSLookup', 'General', True),
+            ('CoreDumps', 'General', True),
+            ('RevealSensitiveInfoInTraces', 'General', True),
+            ('ExecEnvMax', 'General', True),
+            ('MaxInotifyWatches', 'General', True),
+            ('CoreDumpsPath', 'General', True),
+            ('UseFanotify', 'General', True),
+            ('KsvlaMode', 'General', True),
+            ('MachineId', 'General', True),
+            ('StartupTraces', 'General', True),
+            ('MaxInotifyInstances', 'General', True),
+            ('Locale', 'General', True),
+            ('ConnectTimeout', 'Watchdog', True),
+            ('MaxVirtualMemory', 'Watchdog', True),
+            ('MaxMemory', 'Watchdog', True),
+            ('PingInterval', 'Watchdog', True),
+        ]
+    )
+    def test_values(sections, parameter_name, section, expected):
+        """Checking the validity of the values of each parameter"""
+    
+        value = sections[section][parameter_name]
+        exc = f'The parameter value {parameter_name} is invalid'
+    
+        if parameter_name in ['ScanMemoryLimit', 'MaxInotifyInstances']:
+&gt;           assert is_convertable_to_int(value) and (1024 &lt;= int(value) &lt;= 8192), exc
+E           AssertionError: The parameter value ScanMemoryLimit is invalid
+E           assert (False)
+E            +  where False = is_convertable_to_int('8046.2')
+
+tests\test_value.py:37: AssertionError</failure></testcase><testcase classname="tests.test_value" name="test_values[PackageType-General-True]" time="0.001" /><testcase classname="tests.test_value" name="test_values[ExecArgMax-General-True]" time="0.001"><failure message="AssertionError: The parameter value ExecArgMax is invalid&#10;assert (False)&#10; +  where False = is_convertable_to_int('2o')">sections = {'Duplicate': False, 'General': {'AdditionalDNSLookup': 'False', 'CoreDumps': 'no', 'CoreDumpsPath': '////var/opt/kasp...o', ...}, 'Watchdog': {'ConnectTimeout': '-20m', 'MaxMemory': '70', 'MaxVirtualMemory': '0', 'PingInterval': '3000,3'}}
+parameter_name = 'ExecArgMax', section = 'General', expected = True
+
+    @pytest.mark.parametrize(
+        'parameter_name, section, expected',
+        [
+            ('ScanMemoryLimit', 'General', True),
+            ('PackageType', 'General', True),
+            ('ExecArgMax', 'General', True),
+            ('AdditionalDNSLookup', 'General', True),
+            ('CoreDumps', 'General', True),
+            ('RevealSensitiveInfoInTraces', 'General', True),
+            ('ExecEnvMax', 'General', True),
+            ('MaxInotifyWatches', 'General', True),
+            ('CoreDumpsPath', 'General', True),
+            ('UseFanotify', 'General', True),
+            ('KsvlaMode', 'General', True),
+            ('MachineId', 'General', True),
+            ('StartupTraces', 'General', True),
+            ('MaxInotifyInstances', 'General', True),
+            ('Locale', 'General', True),
+            ('ConnectTimeout', 'Watchdog', True),
+            ('MaxVirtualMemory', 'Watchdog', True),
+            ('MaxMemory', 'Watchdog', True),
+            ('PingInterval', 'Watchdog', True),
+        ]
+    )
+    def test_values(sections, parameter_name, section, expected):
+        """Checking the validity of the values of each parameter"""
+    
+        value = sections[section][parameter_name]
+        exc = f'The parameter value {parameter_name} is invalid'
+    
+        if parameter_name in ['ScanMemoryLimit', 'MaxInotifyInstances']:
+            assert is_convertable_to_int(value) and (1024 &lt;= int(value) &lt;= 8192), exc
+    
+        if parameter_name == 'PackageType':
+            assert value.lower() in ['rpm', 'deb'], exc
+    
+        if parameter_name in ['ExecArgMax', 'ExecEnvMax']:
+&gt;           assert is_convertable_to_int(value) and (10 &lt;= int(value) &lt;= 100), exc
+E           AssertionError: The parameter value ExecArgMax is invalid
+E           assert (False)
+E            +  where False = is_convertable_to_int('2o')
+
+tests\test_value.py:43: AssertionError</failure></testcase><testcase classname="tests.test_value" name="test_values[AdditionalDNSLookup-General-True]" time="0.001" /><testcase classname="tests.test_value" name="test_values[CoreDumps-General-True]" time="0.001" /><testcase classname="tests.test_value" name="test_values[RevealSensitiveInfoInTraces-General-True]" time="0.001" /><testcase classname="tests.test_value" name="test_values[ExecEnvMax-General-True]" time="0.001" /><testcase classname="tests.test_value" name="test_values[MaxInotifyWatches-General-True]" time="0.001"><failure message="AssertionError: The parameter value MaxInotifyWatches is invalid&#10;assert (True and 1000 &lt;= -300000)&#10; +  where True = is_convertable_to_int('-300000')&#10; +  and   -300000 = int('-300000')">sections = {'Duplicate': False, 'General': {'AdditionalDNSLookup': 'False', 'CoreDumps': 'no', 'CoreDumpsPath': '////var/opt/kasp...o', ...}, 'Watchdog': {'ConnectTimeout': '-20m', 'MaxMemory': '70', 'MaxVirtualMemory': '0', 'PingInterval': '3000,3'}}
+parameter_name = 'MaxInotifyWatches', section = 'General', expected = True
+
+    @pytest.mark.parametrize(
+        'parameter_name, section, expected',
+        [
+            ('ScanMemoryLimit', 'General', True),
+            ('PackageType', 'General', True),
+            ('ExecArgMax', 'General', True),
+            ('AdditionalDNSLookup', 'General', True),
+            ('CoreDumps', 'General', True),
+            ('RevealSensitiveInfoInTraces', 'General', True),
+            ('ExecEnvMax', 'General', True),
+            ('MaxInotifyWatches', 'General', True),
+            ('CoreDumpsPath', 'General', True),
+            ('UseFanotify', 'General', True),
+            ('KsvlaMode', 'General', True),
+            ('MachineId', 'General', True),
+            ('StartupTraces', 'General', True),
+            ('MaxInotifyInstances', 'General', True),
+            ('Locale', 'General', True),
+            ('ConnectTimeout', 'Watchdog', True),
+            ('MaxVirtualMemory', 'Watchdog', True),
+            ('MaxMemory', 'Watchdog', True),
+            ('PingInterval', 'Watchdog', True),
+        ]
+    )
+    def test_values(sections, parameter_name, section, expected):
+        """Checking the validity of the values of each parameter"""
+    
+        value = sections[section][parameter_name]
+        exc = f'The parameter value {parameter_name} is invalid'
+    
+        if parameter_name in ['ScanMemoryLimit', 'MaxInotifyInstances']:
+            assert is_convertable_to_int(value) and (1024 &lt;= int(value) &lt;= 8192), exc
+    
+        if parameter_name == 'PackageType':
+            assert value.lower() in ['rpm', 'deb'], exc
+    
+        if parameter_name in ['ExecArgMax', 'ExecEnvMax']:
+            assert is_convertable_to_int(value) and (10 &lt;= int(value) &lt;= 100), exc
+    
+        if parameter_name in ['AdditionalDNSLookup', 'CoreDumps', 'RevealSensitiveInfoInTraces', 'UseFanotify', 'KsvlaMode',
+                              'StartupTraces']:
+            assert value.lower() in ['true', 'false', 'no', 'yes'], exc
+    
+        if parameter_name == 'MaxInotifyWatches':
+&gt;           assert is_convertable_to_int(value) and 1000 &lt;= int(value) &lt;= 1000000, exc
+E           AssertionError: The parameter value MaxInotifyWatches is invalid
+E           assert (True and 1000 &lt;= -300000)
+E            +  where True = is_convertable_to_int('-300000')
+E            +  and   -300000 = int('-300000')
+
+tests\test_value.py:50: AssertionError</failure></testcase><testcase classname="tests.test_value" name="test_values[CoreDumpsPath-General-True]" time="0.001"><failure message="AssertionError: The parameter value CoreDumpsPath is invalid&#10;assert False&#10; +  where False = is_valid_directory_path('////var/opt/kaspersky/dumps')">sections = {'Duplicate': False, 'General': {'AdditionalDNSLookup': 'False', 'CoreDumps': 'no', 'CoreDumpsPath': '////var/opt/kasp...o', ...}, 'Watchdog': {'ConnectTimeout': '-20m', 'MaxMemory': '70', 'MaxVirtualMemory': '0', 'PingInterval': '3000,3'}}
+parameter_name = 'CoreDumpsPath', section = 'General', expected = True
+
+    @pytest.mark.parametrize(
+        'parameter_name, section, expected',
+        [
+            ('ScanMemoryLimit', 'General', True),
+            ('PackageType', 'General', True),
+            ('ExecArgMax', 'General', True),
+            ('AdditionalDNSLookup', 'General', True),
+            ('CoreDumps', 'General', True),
+            ('RevealSensitiveInfoInTraces', 'General', True),
+            ('ExecEnvMax', 'General', True),
+            ('MaxInotifyWatches', 'General', True),
+            ('CoreDumpsPath', 'General', True),
+            ('UseFanotify', 'General', True),
+            ('KsvlaMode', 'General', True),
+            ('MachineId', 'General', True),
+            ('StartupTraces', 'General', True),
+            ('MaxInotifyInstances', 'General', True),
+            ('Locale', 'General', True),
+            ('ConnectTimeout', 'Watchdog', True),
+            ('MaxVirtualMemory', 'Watchdog', True),
+            ('MaxMemory', 'Watchdog', True),
+            ('PingInterval', 'Watchdog', True),
+        ]
+    )
+    def test_values(sections, parameter_name, section, expected):
+        """Checking the validity of the values of each parameter"""
+    
+        value = sections[section][parameter_name]
+        exc = f'The parameter value {parameter_name} is invalid'
+    
+        if parameter_name in ['ScanMemoryLimit', 'MaxInotifyInstances']:
+            assert is_convertable_to_int(value) and (1024 &lt;= int(value) &lt;= 8192), exc
+    
+        if parameter_name == 'PackageType':
+            assert value.lower() in ['rpm', 'deb'], exc
+    
+        if parameter_name in ['ExecArgMax', 'ExecEnvMax']:
+            assert is_convertable_to_int(value) and (10 &lt;= int(value) &lt;= 100), exc
+    
+        if parameter_name in ['AdditionalDNSLookup', 'CoreDumps', 'RevealSensitiveInfoInTraces', 'UseFanotify', 'KsvlaMode',
+                              'StartupTraces']:
+            assert value.lower() in ['true', 'false', 'no', 'yes'], exc
+    
+        if parameter_name == 'MaxInotifyWatches':
+            assert is_convertable_to_int(value) and 1000 &lt;= int(value) &lt;= 1000000, exc
+    
+        if parameter_name == 'CoreDumpsPath':
+&gt;           assert is_valid_directory_path(value), exc
+E           AssertionError: The parameter value CoreDumpsPath is invalid
+E           assert False
+E            +  where False = is_valid_directory_path('////var/opt/kaspersky/dumps')
+
+tests\test_value.py:53: AssertionError</failure></testcase><testcase classname="tests.test_value" name="test_values[UseFanotify-General-True]" time="0.001" /><testcase classname="tests.test_value" name="test_values[KsvlaMode-General-True]" time="0.001" /><testcase classname="tests.test_value" name="test_values[MachineId-General-True]" time="0.001"><failure message="AssertionError: The parameter value MachineId is invalid&#10;assert False&#10; +  where False = is_valid_uuid('7b5cc0e7-0205-48e1-bf63-347531eef193123123123')">sections = {'Duplicate': False, 'General': {'AdditionalDNSLookup': 'False', 'CoreDumps': 'no', 'CoreDumpsPath': '////var/opt/kasp...o', ...}, 'Watchdog': {'ConnectTimeout': '-20m', 'MaxMemory': '70', 'MaxVirtualMemory': '0', 'PingInterval': '3000,3'}}
+parameter_name = 'MachineId', section = 'General', expected = True
+
+    @pytest.mark.parametrize(
+        'parameter_name, section, expected',
+        [
+            ('ScanMemoryLimit', 'General', True),
+            ('PackageType', 'General', True),
+            ('ExecArgMax', 'General', True),
+            ('AdditionalDNSLookup', 'General', True),
+            ('CoreDumps', 'General', True),
+            ('RevealSensitiveInfoInTraces', 'General', True),
+            ('ExecEnvMax', 'General', True),
+            ('MaxInotifyWatches', 'General', True),
+            ('CoreDumpsPath', 'General', True),
+            ('UseFanotify', 'General', True),
+            ('KsvlaMode', 'General', True),
+            ('MachineId', 'General', True),
+            ('StartupTraces', 'General', True),
+            ('MaxInotifyInstances', 'General', True),
+            ('Locale', 'General', True),
+            ('ConnectTimeout', 'Watchdog', True),
+            ('MaxVirtualMemory', 'Watchdog', True),
+            ('MaxMemory', 'Watchdog', True),
+            ('PingInterval', 'Watchdog', True),
+        ]
+    )
+    def test_values(sections, parameter_name, section, expected):
+        """Checking the validity of the values of each parameter"""
+    
+        value = sections[section][parameter_name]
+        exc = f'The parameter value {parameter_name} is invalid'
+    
+        if parameter_name in ['ScanMemoryLimit', 'MaxInotifyInstances']:
+            assert is_convertable_to_int(value) and (1024 &lt;= int(value) &lt;= 8192), exc
+    
+        if parameter_name == 'PackageType':
+            assert value.lower() in ['rpm', 'deb'], exc
+    
+        if parameter_name in ['ExecArgMax', 'ExecEnvMax']:
+            assert is_convertable_to_int(value) and (10 &lt;= int(value) &lt;= 100), exc
+    
+        if parameter_name in ['AdditionalDNSLookup', 'CoreDumps', 'RevealSensitiveInfoInTraces', 'UseFanotify', 'KsvlaMode',
+                              'StartupTraces']:
+            assert value.lower() in ['true', 'false', 'no', 'yes'], exc
+    
+        if parameter_name == 'MaxInotifyWatches':
+            assert is_convertable_to_int(value) and 1000 &lt;= int(value) &lt;= 1000000, exc
+    
+        if parameter_name == 'CoreDumpsPath':
+            assert is_valid_directory_path(value), exc
+    
+        if parameter_name == 'MachineId':
+&gt;           assert is_valid_uuid(value), exc
+E           AssertionError: The parameter value MachineId is invalid
+E           assert False
+E            +  where False = is_valid_uuid('7b5cc0e7-0205-48e1-bf63-347531eef193123123123')
+
+tests\test_value.py:56: AssertionError</failure></testcase><testcase classname="tests.test_value" name="test_values[StartupTraces-General-True]" time="0.001"><failure message="AssertionError: The parameter value StartupTraces is invalid&#10;assert 'fa1se' in ['true', 'false', 'no', 'yes']&#10; +  where 'fa1se' = &lt;built-in method lower of str object at 0x000001A5A5857030&gt;()&#10; +    where &lt;built-in method lower of str object at 0x000001A5A5857030&gt; = 'fa1se'.lower">sections = {'Duplicate': False, 'General': {'AdditionalDNSLookup': 'False', 'CoreDumps': 'no', 'CoreDumpsPath': '////var/opt/kasp...o', ...}, 'Watchdog': {'ConnectTimeout': '-20m', 'MaxMemory': '70', 'MaxVirtualMemory': '0', 'PingInterval': '3000,3'}}
+parameter_name = 'StartupTraces', section = 'General', expected = True
+
+    @pytest.mark.parametrize(
+        'parameter_name, section, expected',
+        [
+            ('ScanMemoryLimit', 'General', True),
+            ('PackageType', 'General', True),
+            ('ExecArgMax', 'General', True),
+            ('AdditionalDNSLookup', 'General', True),
+            ('CoreDumps', 'General', True),
+            ('RevealSensitiveInfoInTraces', 'General', True),
+            ('ExecEnvMax', 'General', True),
+            ('MaxInotifyWatches', 'General', True),
+            ('CoreDumpsPath', 'General', True),
+            ('UseFanotify', 'General', True),
+            ('KsvlaMode', 'General', True),
+            ('MachineId', 'General', True),
+            ('StartupTraces', 'General', True),
+            ('MaxInotifyInstances', 'General', True),
+            ('Locale', 'General', True),
+            ('ConnectTimeout', 'Watchdog', True),
+            ('MaxVirtualMemory', 'Watchdog', True),
+            ('MaxMemory', 'Watchdog', True),
+            ('PingInterval', 'Watchdog', True),
+        ]
+    )
+    def test_values(sections, parameter_name, section, expected):
+        """Checking the validity of the values of each parameter"""
+    
+        value = sections[section][parameter_name]
+        exc = f'The parameter value {parameter_name} is invalid'
+    
+        if parameter_name in ['ScanMemoryLimit', 'MaxInotifyInstances']:
+            assert is_convertable_to_int(value) and (1024 &lt;= int(value) &lt;= 8192), exc
+    
+        if parameter_name == 'PackageType':
+            assert value.lower() in ['rpm', 'deb'], exc
+    
+        if parameter_name in ['ExecArgMax', 'ExecEnvMax']:
+            assert is_convertable_to_int(value) and (10 &lt;= int(value) &lt;= 100), exc
+    
+        if parameter_name in ['AdditionalDNSLookup', 'CoreDumps', 'RevealSensitiveInfoInTraces', 'UseFanotify', 'KsvlaMode',
+                              'StartupTraces']:
+&gt;           assert value.lower() in ['true', 'false', 'no', 'yes'], exc
+E           AssertionError: The parameter value StartupTraces is invalid
+E           assert 'fa1se' in ['true', 'false', 'no', 'yes']
+E            +  where 'fa1se' = &lt;built-in method lower of str object at 0x000001A5A5857030&gt;()
+E            +    where &lt;built-in method lower of str object at 0x000001A5A5857030&gt; = 'fa1se'.lower
+
+tests\test_value.py:47: AssertionError</failure></testcase><testcase classname="tests.test_value" name="test_values[MaxInotifyInstances-General-True]" time="0.001" /><testcase classname="tests.test_value" name="test_values[Locale-General-True]" time="0.001" /><testcase classname="tests.test_value" name="test_values[ConnectTimeout-Watchdog-True]" time="0.001"><failure message="AssertionError: The parameter value ConnectTimeout is invalid&#10;assert ('m' == 'm'&#10;  &#10;    m and True and 1 &lt;= -20)&#10; +  where True = is_convertable_to_int('-20')&#10; +  and   -20 = int('-20')">sections = {'Duplicate': False, 'General': {'AdditionalDNSLookup': 'False', 'CoreDumps': 'no', 'CoreDumpsPath': '////var/opt/kasp...o', ...}, 'Watchdog': {'ConnectTimeout': '-20m', 'MaxMemory': '70', 'MaxVirtualMemory': '0', 'PingInterval': '3000,3'}}
+parameter_name = 'ConnectTimeout', section = 'Watchdog', expected = True
+
+    @pytest.mark.parametrize(
+        'parameter_name, section, expected',
+        [
+            ('ScanMemoryLimit', 'General', True),
+            ('PackageType', 'General', True),
+            ('ExecArgMax', 'General', True),
+            ('AdditionalDNSLookup', 'General', True),
+            ('CoreDumps', 'General', True),
+            ('RevealSensitiveInfoInTraces', 'General', True),
+            ('ExecEnvMax', 'General', True),
+            ('MaxInotifyWatches', 'General', True),
+            ('CoreDumpsPath', 'General', True),
+            ('UseFanotify', 'General', True),
+            ('KsvlaMode', 'General', True),
+            ('MachineId', 'General', True),
+            ('StartupTraces', 'General', True),
+            ('MaxInotifyInstances', 'General', True),
+            ('Locale', 'General', True),
+            ('ConnectTimeout', 'Watchdog', True),
+            ('MaxVirtualMemory', 'Watchdog', True),
+            ('MaxMemory', 'Watchdog', True),
+            ('PingInterval', 'Watchdog', True),
+        ]
+    )
+    def test_values(sections, parameter_name, section, expected):
+        """Checking the validity of the values of each parameter"""
+    
+        value = sections[section][parameter_name]
+        exc = f'The parameter value {parameter_name} is invalid'
+    
+        if parameter_name in ['ScanMemoryLimit', 'MaxInotifyInstances']:
+            assert is_convertable_to_int(value) and (1024 &lt;= int(value) &lt;= 8192), exc
+    
+        if parameter_name == 'PackageType':
+            assert value.lower() in ['rpm', 'deb'], exc
+    
+        if parameter_name in ['ExecArgMax', 'ExecEnvMax']:
+            assert is_convertable_to_int(value) and (10 &lt;= int(value) &lt;= 100), exc
+    
+        if parameter_name in ['AdditionalDNSLookup', 'CoreDumps', 'RevealSensitiveInfoInTraces', 'UseFanotify', 'KsvlaMode',
+                              'StartupTraces']:
+            assert value.lower() in ['true', 'false', 'no', 'yes'], exc
+    
+        if parameter_name == 'MaxInotifyWatches':
+            assert is_convertable_to_int(value) and 1000 &lt;= int(value) &lt;= 1000000, exc
+    
+        if parameter_name == 'CoreDumpsPath':
+            assert is_valid_directory_path(value), exc
+    
+        if parameter_name == 'MachineId':
+            assert is_valid_uuid(value), exc
+    
+        if parameter_name == 'Locale':
+            assert is_valid_locale(value), exc
+    
+        if parameter_name == 'ConnectTimeout':
+&gt;           assert value[-1] == 'm' and is_convertable_to_int(value[:-1]) and 1 &lt;= int(value[:-1]) &lt;= 120, exc
+E           AssertionError: The parameter value ConnectTimeout is invalid
+E           assert ('m' == 'm'
+E             
+E               m and True and 1 &lt;= -20)
+E            +  where True = is_convertable_to_int('-20')
+E            +  and   -20 = int('-20')
+
+tests\test_value.py:62: AssertionError</failure></testcase><testcase classname="tests.test_value" name="test_values[MaxVirtualMemory-Watchdog-True]" time="0.001"><failure message="AssertionError: The parameter value MaxVirtualMemory is invalid&#10;assert ('0' in ['off', 'auto'] or (True and 0 &lt; 0.0))&#10; +  where True = is_convertable_to_float('0')&#10; +  and   0.0 = float('0')">sections = {'Duplicate': False, 'General': {'AdditionalDNSLookup': 'False', 'CoreDumps': 'no', 'CoreDumpsPath': '////var/opt/kasp...o', ...}, 'Watchdog': {'ConnectTimeout': '-20m', 'MaxMemory': '70', 'MaxVirtualMemory': '0', 'PingInterval': '3000,3'}}
+parameter_name = 'MaxVirtualMemory', section = 'Watchdog', expected = True
+
+    @pytest.mark.parametrize(
+        'parameter_name, section, expected',
+        [
+            ('ScanMemoryLimit', 'General', True),
+            ('PackageType', 'General', True),
+            ('ExecArgMax', 'General', True),
+            ('AdditionalDNSLookup', 'General', True),
+            ('CoreDumps', 'General', True),
+            ('RevealSensitiveInfoInTraces', 'General', True),
+            ('ExecEnvMax', 'General', True),
+            ('MaxInotifyWatches', 'General', True),
+            ('CoreDumpsPath', 'General', True),
+            ('UseFanotify', 'General', True),
+            ('KsvlaMode', 'General', True),
+            ('MachineId', 'General', True),
+            ('StartupTraces', 'General', True),
+            ('MaxInotifyInstances', 'General', True),
+            ('Locale', 'General', True),
+            ('ConnectTimeout', 'Watchdog', True),
+            ('MaxVirtualMemory', 'Watchdog', True),
+            ('MaxMemory', 'Watchdog', True),
+            ('PingInterval', 'Watchdog', True),
+        ]
+    )
+    def test_values(sections, parameter_name, section, expected):
+        """Checking the validity of the values of each parameter"""
+    
+        value = sections[section][parameter_name]
+        exc = f'The parameter value {parameter_name} is invalid'
+    
+        if parameter_name in ['ScanMemoryLimit', 'MaxInotifyInstances']:
+            assert is_convertable_to_int(value) and (1024 &lt;= int(value) &lt;= 8192), exc
+    
+        if parameter_name == 'PackageType':
+            assert value.lower() in ['rpm', 'deb'], exc
+    
+        if parameter_name in ['ExecArgMax', 'ExecEnvMax']:
+            assert is_convertable_to_int(value) and (10 &lt;= int(value) &lt;= 100), exc
+    
+        if parameter_name in ['AdditionalDNSLookup', 'CoreDumps', 'RevealSensitiveInfoInTraces', 'UseFanotify', 'KsvlaMode',
+                              'StartupTraces']:
+            assert value.lower() in ['true', 'false', 'no', 'yes'], exc
+    
+        if parameter_name == 'MaxInotifyWatches':
+            assert is_convertable_to_int(value) and 1000 &lt;= int(value) &lt;= 1000000, exc
+    
+        if parameter_name == 'CoreDumpsPath':
+            assert is_valid_directory_path(value), exc
+    
+        if parameter_name == 'MachineId':
+            assert is_valid_uuid(value), exc
+    
+        if parameter_name == 'Locale':
+            assert is_valid_locale(value), exc
+    
+        if parameter_name == 'ConnectTimeout':
+            assert value[-1] == 'm' and is_convertable_to_int(value[:-1]) and 1 &lt;= int(value[:-1]) &lt;= 120, exc
+    
+        if parameter_name in ['MaxVirtualMemory', 'MaxMemory']:
+&gt;           assert value in ['off', 'auto'] or (is_convertable_to_float(value) and 0 &lt; float(value) &lt;= 100), exc
+E           AssertionError: The parameter value MaxVirtualMemory is invalid
+E           assert ('0' in ['off', 'auto'] or (True and 0 &lt; 0.0))
+E            +  where True = is_convertable_to_float('0')
+E            +  and   0.0 = float('0')
+
+tests\test_value.py:65: AssertionError</failure></testcase><testcase classname="tests.test_value" name="test_values[MaxMemory-Watchdog-True]" time="0.001" /><testcase classname="tests.test_value" name="test_values[PingInterval-Watchdog-True]" time="0.001"><failure message="AssertionError: The parameter value PingInterval is invalid&#10;assert (False)&#10; +  where False = is_convertable_to_int('3000,3')">sections = {'Duplicate': False, 'General': {'AdditionalDNSLookup': 'False', 'CoreDumps': 'no', 'CoreDumpsPath': '////var/opt/kasp...o', ...}, 'Watchdog': {'ConnectTimeout': '-20m', 'MaxMemory': '70', 'MaxVirtualMemory': '0', 'PingInterval': '3000,3'}}
+parameter_name = 'PingInterval', section = 'Watchdog', expected = True
+
+    @pytest.mark.parametrize(
+        'parameter_name, section, expected',
+        [
+            ('ScanMemoryLimit', 'General', True),
+            ('PackageType', 'General', True),
+            ('ExecArgMax', 'General', True),
+            ('AdditionalDNSLookup', 'General', True),
+            ('CoreDumps', 'General', True),
+            ('RevealSensitiveInfoInTraces', 'General', True),
+            ('ExecEnvMax', 'General', True),
+            ('MaxInotifyWatches', 'General', True),
+            ('CoreDumpsPath', 'General', True),
+            ('UseFanotify', 'General', True),
+            ('KsvlaMode', 'General', True),
+            ('MachineId', 'General', True),
+            ('StartupTraces', 'General', True),
+            ('MaxInotifyInstances', 'General', True),
+            ('Locale', 'General', True),
+            ('ConnectTimeout', 'Watchdog', True),
+            ('MaxVirtualMemory', 'Watchdog', True),
+            ('MaxMemory', 'Watchdog', True),
+            ('PingInterval', 'Watchdog', True),
+        ]
+    )
+    def test_values(sections, parameter_name, section, expected):
+        """Checking the validity of the values of each parameter"""
+    
+        value = sections[section][parameter_name]
+        exc = f'The parameter value {parameter_name} is invalid'
+    
+        if parameter_name in ['ScanMemoryLimit', 'MaxInotifyInstances']:
+            assert is_convertable_to_int(value) and (1024 &lt;= int(value) &lt;= 8192), exc
+    
+        if parameter_name == 'PackageType':
+            assert value.lower() in ['rpm', 'deb'], exc
+    
+        if parameter_name in ['ExecArgMax', 'ExecEnvMax']:
+            assert is_convertable_to_int(value) and (10 &lt;= int(value) &lt;= 100), exc
+    
+        if parameter_name in ['AdditionalDNSLookup', 'CoreDumps', 'RevealSensitiveInfoInTraces', 'UseFanotify', 'KsvlaMode',
+                              'StartupTraces']:
+            assert value.lower() in ['true', 'false', 'no', 'yes'], exc
+    
+        if parameter_name == 'MaxInotifyWatches':
+            assert is_convertable_to_int(value) and 1000 &lt;= int(value) &lt;= 1000000, exc
+    
+        if parameter_name == 'CoreDumpsPath':
+            assert is_valid_directory_path(value), exc
+    
+        if parameter_name == 'MachineId':
+            assert is_valid_uuid(value), exc
+    
+        if parameter_name == 'Locale':
+            assert is_valid_locale(value), exc
+    
+        if parameter_name == 'ConnectTimeout':
+            assert value[-1] == 'm' and is_convertable_to_int(value[:-1]) and 1 &lt;= int(value[:-1]) &lt;= 120, exc
+    
+        if parameter_name in ['MaxVirtualMemory', 'MaxMemory']:
+            assert value in ['off', 'auto'] or (is_convertable_to_float(value) and 0 &lt; float(value) &lt;= 100), exc
+    
+        if parameter_name == 'PingInterval':
+&gt;           assert is_convertable_to_int(value) and 100 &lt;= int(value) &lt;= 10000, exc
+E           AssertionError: The parameter value PingInterval is invalid
+E           assert (False)
+E            +  where False = is_convertable_to_int('3000,3')
+
+tests\test_value.py:68: AssertionError</failure></testcase></testsuite></testsuites>
